@@ -6,6 +6,7 @@ jsGlobals
 	
 	Imagine that you have this JavaScript code, that saves a note for a contact of a customer.
 	
+```javascript
 	function saveNota() {
 		new Ajax.Request('dispatcher.php', {
 			method:'post',
@@ -20,13 +21,14 @@ jsGlobals
 			}
 		});
 	}
-	
+```
 	Both numCustomerID and numContactID values come originally from backend. 
 	The easiest way to have them availabile in your page is to use hidden fields.
 	
 	Another way is to set a couple of global vars containing the same information.
 	Using this class is as simple as adding this to your code:
-	
+
+```	
 	<script>
 <?php
 	$objJS = new jsGlobalsClass();
@@ -37,16 +39,18 @@ jsGlobals
 	echo $objJS;
 ?>
 	</script>
-	
+```	
 	that will add this to your generated html:
+```
 	<script>
 		var numCustomerID = 998,
     		numContactID = 2323;
 	</script>
-		
+```		
 	But what if you need to pass intl' strings because your product is multilingual.
-	Or an array to fill a menu.
+	Or an array to dinamically fill a menu.
 
+```
 	<script>
 <?php
 	$objJS = new jsGlobalsClass();
@@ -74,12 +78,12 @@ jsGlobals
 	$objJS->arrPanels = array('proyectos', 'direcciones', 'notas');
 	$objJS->strNombrePanel = $objJS->text($objJS->arrPanels[$objJS->numCurPanel]);
 
-
 	echo $objJS;
 ?>
 	</script>
-	
+```	
 	The code above will generate this javascript.
+```
 	<script>
 		var arrDirs = {"0":{"ID":"1","LABEL":"Sede central"},"1":{"ID":"2","LABEL":"Envíos"},"2":{"ID":"3","LABEL":"Facturación"},"3":{"ID":"4","LABEL":"Sucursal"}},
     		arrPaneles = {"0":"proyectos","1":"direcciones","2":"notas"},
@@ -92,5 +96,5 @@ jsGlobals
     		textoConfirmDelete = "\u277Est\u341 seguro que desea eliminar este [[1]]?",
     		textoConfirmEdit = "Est\u341 editando un [[1]].\n\u277Est\u341 seguro de que quiere cancelar la edici\u363n y mostrar otro en su lugar?";
 	</script>
-
+```
 	So you are sending, easily, PHP data to Javascript.
